@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
 
+# Crawl-delay for specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location
 Sitemap: https://amityonline.com/sitemap.xml
+
+# Host preference
+Host: https://amityonline.com
