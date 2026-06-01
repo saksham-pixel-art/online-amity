@@ -7,7 +7,7 @@ import { Phone, MessageCircle } from "lucide-react";
 // ── Configuration ──────────────────────────────────────────────
 const PHONE_NUMBER = "917037010407"; // Update with actual number
 const WHATSAPP_NUMBER = "917037010407"; // Update with actual number (include country code, no +)
-const WHATSAPP_MESSAGE = "Hi! I'm interested in Amity Online programs. Can you help me?";
+const WHATSAPP_MESSAGE = "Hi, I'm interested in applying for admission at Amity Online. Please share more details.";
 
 export default function FloatingButtons() {
   const [visible, setVisible] = useState(false);

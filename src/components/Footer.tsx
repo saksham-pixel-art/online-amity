@@ -60,8 +60,7 @@ export default function Footer() {
             />
           </a>
           <p className="text-sm font-medium text-on-primary/60 leading-relaxed max-w-xs">
-            Bridging the gap between traditional prestige and digital innovation
-            through world-class online education.
+            India's No.1 Online University offering UG, PG, and certification programs across various disciplines..
           </p>
         </div>
 
