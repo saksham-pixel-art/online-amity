@@ -1,181 +1,164 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Send } from "lucide-react";
-import React, { useState } from "react";
-
-function isValidEmail(email: string): boolean {
-  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
-}
+import { MapPin, Phone, Mail, Award, Shield, Globe } from "lucide-react";
+import React from "react";
 
 const quickLinks = [
   { href: "#disclosure", label: "UGC Disclosure" },
   { href: "#terms", label: "Terms & Conditions" },
   { href: "#privacy", label: "Privacy Policy" },
+  { href: "#refund", label: "Refund Policy" },
   { href: "#contact", label: "Contact Us" },
 ];
 
 const programs = [
-  { href: "#programs", label: "MBA" },
-  { href: "#programs", label: "BBA" },
-  { href: "#programs", label: "MCA" },
-  { href: "#programs", label: "BCA" },
-  { href: "#programs", label: "BCOM" },
-  { href: "#programs", label: "BA" },
-  { href: "#programs", label: "MCOM" },
-  { href: "#programs", label: "MA" },
+  { href: "#programs", label: "MBA", tag: "Popular" },
+  { href: "#programs", label: "MCA", tag: null },
+  { href: "#programs", label: "MCOM", tag: null },
+  { href: "#programs", label: "MA", tag: null },
+  { href: "#programs", label: "BBA", tag: null },
+];
+
+const accreditations = [
+  { icon: Award, label: "UGC Approved" },
+  { icon: Shield, label: "NAAC A+ Grade" },
+  { icon: Globe, label: "WASC Accredited" },
 ];
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [emailError, setEmailError] = useState("");
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    setEmailError("");
-    if (!email || !isValidEmail(email)) {
-      setEmailError("Please enter a valid email address.");
-      return;
-    }
-    setSubscribed(true);
-    setTimeout(() => {
-      setSubscribed(false);
-      setEmail("");
-    }, 3000);
-  };
-
   return (
-    <footer className="bg-trust-navy border-t border-white/5 relative overflow-hidden" role="contentinfo">
-      {/* Main Footer Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 px-5 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-14 lg:py-16 max-w-[1280px] mx-auto text-on-primary text-left z-10 relative">
+    <footer className="relative bg-gradient-to-br from-trust-navy via-[#001a3d] to-trust-navy overflow-hidden" role="contentinfo">
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-excellence-gold rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
+      </div>
 
-        {/* Brand */}
-        <div className="space-y-5 sm:col-span-2 lg:col-span-1">
-          <a href="#" aria-label="Amity University Online — Home">
-            <img
-              src="/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png"
-              alt="Amity University Online"
-              style={{ height: "44px", width: "auto", display: "block" }}
-              className="select-none transition-transform hover:scale-[1.02]"
-              width={228}
-              height={80}
-              loading="lazy"
-            />
-          </a>
-          <p className="text-sm font-medium text-on-primary/60 leading-relaxed max-w-xs">
-            India's No.1 Online University offering UG, PG, and certification programs across various disciplines..
-          </p>
+      {/* Main Footer Content */}
+      <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 py-12">
+        
+        {/* Main Grid - Brand + Links */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 mb-10 pb-10 border-b border-white/10">
+          
+          {/* Brand Section - Takes 2 columns on large screens */}
+          <div className="lg:col-span-2 space-y-5">
+            <a href="#" aria-label="Amity University Online — Home" className="inline-block">
+              <img
+                src="/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png"
+                alt="Amity University Online"
+                style={{ height: "38px", width: "auto" }}
+                className="select-none transition-transform hover:scale-105"
+                loading="lazy"
+              />
+            </a>
+            
+            <p className="text-sm text-white/70 leading-relaxed max-w-sm">
+              India's No.1 Online University offering UGC-approved, WASC-accredited degree programs with 100% online flexibility and placement support.
+            </p>
+
+            {/* Accreditation Badges */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              {accreditations.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-1.5"
+                  >
+                    <Icon className="w-3.5 h-3.5 text-excellence-gold" />
+                    <span className="text-xs font-semibold text-white/80">{item.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <nav aria-label="Quick links" className="space-y-4">
+            <h3 className="text-white font-bold text-sm uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul className="space-y-2.5">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-white/60 hover:text-excellence-gold transition-colors inline-flex items-center gap-2 group"
+                  >
+                    <span className="w-0 group-hover:w-1.5 h-px bg-excellence-gold transition-all" />
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Programs */}
+          <nav aria-label="Programs" className="space-y-4">
+            <h3 className="text-white font-bold text-sm uppercase tracking-wider">
+              Programs
+            </h3>
+            <ul className="space-y-2.5">
+              {programs.slice(0, 5).map((p) => (
+                <li key={p.label}>
+                  <a
+                    href={p.href}
+                    className="text-sm text-white/60 hover:text-excellence-gold transition-colors inline-flex items-center gap-2 group"
+                  >
+                    <span className="w-0 group-hover:w-1.5 h-px bg-excellence-gold transition-all" />
+                    {p.label}
+                    {p.tag && (
+                      <span className="text-[9px] bg-excellence-gold/20 text-excellence-gold px-1.5 py-0.5 rounded-full font-bold uppercase">
+                        {p.tag}
+                      </span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h3 className="text-white font-bold text-sm uppercase tracking-wider">
+              Contact Us
+            </h3>
+            <div className="space-y-3">
+              <a href="tel:+917037010407" className="flex items-center gap-2.5 text-white/60 hover:text-excellence-gold transition-colors group text-sm">
+                <Phone className="w-4 h-4 text-excellence-gold flex-shrink-0" />
+                <span>+91 7037010407</span>
+              </a>
+              <a href="mailto:admissions@amityonline.com" className="flex items-center gap-2.5 text-white/60 hover:text-excellence-gold transition-colors group text-sm">
+                <Mail className="w-4 h-4 text-excellence-gold flex-shrink-0" />
+                <span>admissions@amityonline.com</span>
+              </a>
+              <div className="flex items-start gap-2.5 text-white/60 text-sm pt-1">
+                <MapPin className="w-4 h-4 text-excellence-gold flex-shrink-0 mt-0.5" />
+                <p className="leading-relaxed">
+                  Sector 125, Noida,<br />Uttar Pradesh 201313
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Quick Links */}
-        <nav aria-label="Quick links">
-          <h2 className="text-excellence-gold font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">
-            Quick Links
-          </h2>
-          <ul className="space-y-2.5">
-            {quickLinks.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="text-sm text-surface-container-highest hover:text-white transition-all hover:translate-x-1 inline-block duration-200 focus-visible:outline-none focus-visible:text-excellence-gold"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Programs */}
-        <nav aria-label="Programs">
-          <h2 className="text-excellence-gold font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">
-            Programs
-          </h2>
-          <ul className="space-y-2.5">
-            {programs.map((p) => (
-              <li key={p.label}>
-                <a
-                  href={p.href}
-                  className="text-sm text-surface-container-highest hover:text-white transition-all hover:translate-x-1 inline-block duration-200 focus-visible:outline-none focus-visible:text-excellence-gold"
-                >
-                  {p.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Newsletter */}
-        <div className="space-y-4">
-          <h2 className="text-excellence-gold font-bold text-xs sm:text-sm uppercase tracking-wider">
-            Stay Updated
-          </h2>
-
-          {subscribed ? (
-            <motion.p
-              className="text-sm text-excellence-gold font-bold"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              role="status"
-              aria-live="polite"
-            >
-              Subscribed successfully!
-            </motion.p>
-          ) : (
-            <form onSubmit={handleSubscribe} noValidate aria-label="Newsletter subscription">
-              <div className="flex">
-                <label htmlFor="footer-email" className="sr-only">
-                  Email address for newsletter
-                </label>
-                <input
-                  id="footer-email"
-                  required
-                  aria-required="true"
-                  aria-invalid={!!emailError}
-                  aria-describedby={emailError ? "footer-email-error" : undefined}
-                  className="bg-white/10 text-white placeholder-on-primary/40 border border-white/10 rounded-l-xl px-3 sm:px-4 py-3 w-full outline-none text-sm font-medium focus:bg-white/15 focus:border-white/20 transition-all min-h-[44px]"
-                  placeholder="Your email"
-                  type="email"
-                  autoComplete="email"
-                  maxLength={254}
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setEmailError("");
-                  }}
-                />
-                <button
-                  type="submit"
-                  className="bg-excellence-gold text-trust-navy px-3 sm:px-4 rounded-r-xl hover:bg-[#ebd01f] transition-colors cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white shadow-md min-h-[44px] min-w-[44px]"
-                  aria-label="Subscribe to newsletter"
-                >
-                  <Send className="w-4 h-4 stroke-[2]" aria-hidden="true" />
-                </button>
-              </div>
-              {emailError && (
-                <p id="footer-email-error" role="alert" className="mt-1.5 text-xs text-red-400 font-medium">
-                  {emailError}
-                </p>
-              )}
-            </form>
-          )}
-
-          <p className="text-xs font-medium text-on-primary/40 leading-relaxed">
+        {/* Bottom Section - Copyright */}
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-sm text-white/40 font-medium text-center">
             &copy; {new Date().getFullYear()} Amity University Online. All Rights Reserved.
           </p>
         </div>
       </div>
 
       {/* Legal Disclaimer */}
-      <div className="bg-white border-t border-[#E5E7EB] py-4 sm:py-5 px-5 sm:px-8 md:px-12 lg:px-16 w-full z-10 relative">
-        <div className="max-w-[900px] mx-auto text-center">
-          <p className="text-[11px] sm:text-[12px] md:text-[13px] text-[#6B7280] leading-relaxed font-normal">
-            <span className="font-semibold text-[#374151]">Disclaimer:</span>{" "}
+      <div className="relative z-10 bg-black/20 backdrop-blur-sm border-t border-white/5 py-6 px-5 sm:px-8 md:px-12 lg:px-16">
+        <div className="max-w-[1100px] mx-auto">
+          <p className="text-xs text-white/50 leading-relaxed text-center">
+            <span className="font-semibold text-white/70">Disclaimer:</span>{" "}
             This website is intended solely for providing information about Amity Online programs.
             All admissions, enrollments, fee payments, academic decisions, and related processes
             are conducted exclusively by Amity Online through its official channels.
-            Information is subject to change as per the university&apos;s policies and guidelines.
+            Information is subject to change as per the university's policies and guidelines.
           </p>
         </div>
       </div>
