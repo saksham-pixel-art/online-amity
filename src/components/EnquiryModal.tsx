@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect, useRef, useId, useCallback } from "react";
 import { X, Check, Shield, Clock, Award, GraduationCap } from "lucide-react";
+import ThankYouPage from "./ThankYouPage";
 
 type EnquiryModalProps = {
   isOpen: boolean;
@@ -189,7 +190,9 @@ export default function EnquiryModal({
 
           {/* Modal Container - Premium Card Design */}
           <motion.div
-            className="relative z-10 w-full max-w-2xl max-h-[95vh] overflow-y-auto bg-white rounded-2xl shadow-[0_24px_60px_rgba(0,33,71,0.25)] border border-gray-100"
+            className={`relative z-10 w-full max-w-2xl max-h-[95vh] overflow-y-auto bg-white rounded-2xl shadow-[0_24px_60px_rgba(0,33,71,0.25)] border border-gray-100 ${
+              success ? "max-w-4xl" : ""
+            }`}
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -206,33 +209,11 @@ export default function EnquiryModal({
             </button>
 
             {success ? (
-              <motion.div
-                className="flex flex-col items-center justify-center text-center px-8 py-16 min-h-[400px]"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 }}
-                role="status"
-                aria-live="polite"
-              >
-                <motion.div
-                  className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center text-green-600 shadow-lg mb-6"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", delay: 0.2, bounce: 0.5 }}
-                  aria-hidden="true"
-                >
-                  <Check className="w-10 h-10 stroke-[3]" />
-                </motion.div>
-                <h3 className="text-3xl font-bold text-trust-navy mb-3 tracking-tight">
-                  Enquiry Submitted Successfully!
-                </h3>
-                <p className="text-base text-gray-600 max-w-md leading-relaxed mb-2">
-                  Thank you for your interest in Amity University Online.
-                </p>
-                <p className="text-sm font-semibold text-trust-navy">
-                  Our admission counselor will contact you within 24 hours.
-                </p>
-              </motion.div>
+              <ThankYouPage
+                studentName={form.name.split(" ")[0] || "Student"}
+                selectedCourse={form.course !== "Select a course" ? form.course : ""}
+                onClose={onClose}
+              />
             ) : (
               <>
                 {/* Header Section with Trust Badge */}

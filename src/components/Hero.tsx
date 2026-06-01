@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useId } from "react";
+import ThankYouPage from "./ThankYouPage";
+import { X } from "lucide-react";
 
 type HeroProps = {
   onOpenEnquiry?: (course?: string) => void;
@@ -41,6 +43,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState("");
 
@@ -91,11 +94,8 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
       const result = await response.json();
       if (result.success) {
+        setShowThankYou(true);
         setSubmitted(true);
-        setTimeout(() => {
-          setSubmitted(false);
-          setForm({ name: "", email: "", mobile: "", city: "", course: "Select a course" });
-        }, 4000);
       } else {
         setServerError(result.error || "Submission failed. Please try again.");
       }
@@ -424,6 +424,65 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           </div>
         </motion.div>
       </div>
+
+      {/* Thank You Modal */}
+      <AnimatePresence>
+        {showThankYou && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="thank-you-title"
+          >
+            {/* Backdrop */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-br from-trust-navy/70 via-trust-navy/60 to-black/70 backdrop-blur-sm cursor-pointer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => {
+                setShowThankYou(false);
+                setSubmitted(false);
+                setForm({ name: "", email: "", mobile: "", city: "", course: "Select a course" });
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Modal Container */}
+            <motion.div
+              className="relative z-10 w-full max-w-4xl max-h-[95vh] overflow-y-auto bg-white rounded-2xl shadow-[0_24px_60px_rgba(0,33,71,0.25)] border border-gray-100"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
+            >
+              {/* Close Button */}
+              <button
+                className="absolute top-5 right-5 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-trust-navy transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-excellence-gold focus-visible:ring-offset-2"
+                onClick={() => {
+                  setShowThankYou(false);
+                  setSubmitted(false);
+                  setForm({ name: "", email: "", mobile: "", city: "", course: "Select a course" });
+                }}
+                aria-label="Close thank you page"
+              >
+                <X className="w-5 h-5 stroke-[2.5]" aria-hidden="true" />
+              </button>
+
+              <ThankYouPage
+                studentName={form.name.split(" ")[0] || "Student"}
+                selectedCourse={form.course !== "Select a course" ? form.course : ""}
+                onClose={() => {
+                  setShowThankYou(false);
+                  setSubmitted(false);
+                  setForm({ name: "", email: "", mobile: "", city: "", course: "Select a course" });
+                }}
+              />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
