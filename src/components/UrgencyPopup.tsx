@@ -4,8 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Users, Clock } from "lucide-react";
 
-const INITIAL_DELAY = 3_000; // 3 seconds - first popup
-const REOPEN_INTERVAL = 20_000; // 20 seconds - subsequent popups
+const INITIAL_DELAY = 3_000; // 3 seconds - show popup once
 const FILL_PERCENT = 92;
 
 type UrgencyPopupProps = {
@@ -15,25 +14,18 @@ type UrgencyPopupProps = {
 export default function UrgencyPopup({ onOpenEnquiry }: UrgencyPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
 
-  const openPopup = useCallback(() => setIsVisible(true), []);
   const closePopup = useCallback(() => setIsVisible(false), []);
 
   useEffect(() => {
-    // Show popup after 3 seconds initially
-    const initialTimer = setTimeout(openPopup, INITIAL_DELAY);
+    // Show popup only once after 3 seconds when user enters the site
+    const initialTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, INITIAL_DELAY);
 
     return () => {
       clearTimeout(initialTimer);
     };
-  }, [openPopup]);
-
-  useEffect(() => {
-    // Re-open every 20 seconds after the popup is closed
-    if (!isVisible) {
-      const reopenTimer = setTimeout(openPopup, REOPEN_INTERVAL);
-      return () => clearTimeout(reopenTimer);
-    }
-  }, [isVisible, openPopup]);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   const handleCTA = () => {
     closePopup();
