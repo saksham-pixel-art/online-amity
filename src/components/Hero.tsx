@@ -126,7 +126,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
             transition={{ delay: 0.2, duration: 0.4 }}
             aria-label="Admissions status"
           >
-            January &apos;27 Session Admissions Open
+            July &apos;26 Session Admissions Open
           </motion.div>
 
           <h1 className="font-bold text-hero text-trust-navy tracking-tight max-w-2xl">
