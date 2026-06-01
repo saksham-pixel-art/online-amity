@@ -15,6 +15,12 @@ import Footer from "@/components/Footer";
 import EnquiryModal from "@/components/EnquiryModal";
 import FloatingButtons from "@/components/FloatingButtons";
 import UrgencyPopup from "@/components/UrgencyPopup";
+import CTATrustBased from "@/components/CTATrustBased";
+import CTASplitLayout from "@/components/CTASplitLayout";
+import CTAMinimalCard from "@/components/CTAMinimalCard";
+import CTAMultiOption from "@/components/CTAMultiOption";
+import CTATestimonial from "@/components/CTATestimonial";
+import CTAInlineBanner from "@/components/CTAInlineBanner";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,11 +47,17 @@ export default function Home() {
       <main id="main-content" className="flex-1" tabIndex={-1}>
         <Hero onOpenEnquiry={handleOpenEnquiry} />
         <Stats />
+        <CTATrustBased onOpenEnquiry={() => handleOpenEnquiry()} />
         <Highlights />
+        <CTASplitLayout onOpenEnquiry={() => handleOpenEnquiry()} />
         <Accreditations />
+        <CTAMinimalCard onOpenEnquiry={() => handleOpenEnquiry()} />
         <Programs onOpenEnquiry={handleOpenEnquiry} />
+        <CTAMultiOption onOpenEnquiry={() => handleOpenEnquiry()} />
         <WhyAmity />
+        <CTATestimonial onOpenEnquiry={() => handleOpenEnquiry()} />
         <Marquee />
+        <CTAInlineBanner onOpenEnquiry={() => handleOpenEnquiry()} />
         <FAQ />
         <CTA onOpenEnquiry={() => handleOpenEnquiry()} />
       </main>
