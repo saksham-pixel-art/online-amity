@@ -14,6 +14,7 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import EnquiryModal from "@/components/EnquiryModal";
 import FloatingButtons from "@/components/FloatingButtons";
+import UrgencyPopup from "@/components/UrgencyPopup";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,6 +59,8 @@ export default function Home() {
       />
 
       <FloatingButtons />
+
+      <UrgencyPopup onOpenEnquiry={() => handleOpenEnquiry()} />
     </div>
   );
 }

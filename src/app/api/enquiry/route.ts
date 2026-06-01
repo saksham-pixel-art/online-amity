@@ -114,10 +114,11 @@ export async function POST(request: Request) {
     const name = sanitizeString(data.name);
     const email = sanitizeString(data.email).toLowerCase();
     const mobile = sanitizeString(data.mobile);
+    const city = sanitizeString(data.city);
     const course = sanitizeString(data.course);
 
     // --- Validate presence ---
-    if (!name || !email || !mobile || !course) {
+    if (!name || !email || !mobile || !city || !course) {
       return NextResponse.json(
         { success: false, error: "All fields are required." },
         { status: 400 }
@@ -163,9 +164,9 @@ export async function POST(request: Request) {
 
     // --- Write to CSV (local dev only — filesystem is read-only on serverless) ---
     if (process.env.NODE_ENV !== "production") {
-      const csvRow = `${escapeCSV(timestamp)},${escapeCSV(name)},${escapeCSV(email)},${escapeCSV(mobile)},${escapeCSV(course)}\n`;
+      const csvRow = `${escapeCSV(timestamp)},${escapeCSV(name)},${escapeCSV(email)},${escapeCSV(mobile)},${escapeCSV(city)},${escapeCSV(course)}\n`;
       if (!fs.existsSync(CSV_FILE_PATH)) {
-        const headers = "Timestamp,Full Name,Email,Mobile,Preferred Course\n";
+        const headers = "Timestamp,Full Name,Email,Mobile,City,Preferred Course\n";
         fs.writeFileSync(CSV_FILE_PATH, headers + csvRow, "utf8");
       } else {
         fs.appendFileSync(CSV_FILE_PATH, csvRow, "utf8");
@@ -198,12 +199,12 @@ export async function POST(request: Request) {
         await Promise.race([
           sheets.spreadsheets.values.append({
             spreadsheetId: gsSpreadsheetId,
-            range: `${gsSheetName}!A:E`,
+            range: `${gsSheetName}!A:F`,
             valueInputOption: "USER_ENTERED",
             requestBody: {
               values: [[
                 new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-                name, email, mobile, course,
+                name, email, mobile, city, course,
               ]],
             },
           }),
@@ -249,6 +250,10 @@ export async function POST(request: Request) {
           <tr>
             <td style="padding: 10px 0; border-bottom: 1px solid #efedf1; color: #44474e; font-weight: bold;">Mobile Number</td>
             <td style="padding: 10px 0; border-bottom: 1px solid #efedf1; color: #1a1b1e; font-weight: 500;">${mobile}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; border-bottom: 1px solid #efedf1; color: #44474e; font-weight: bold;">City</td>
+            <td style="padding: 10px 0; border-bottom: 1px solid #efedf1; color: #1a1b1e; font-weight: 500;">${city}</td>
           </tr>
           <tr>
             <td style="padding: 10px 0; border-bottom: 1px solid #efedf1; color: #44474e; font-weight: bold;">Preferred Course</td>
@@ -312,7 +317,7 @@ export async function POST(request: Request) {
 
     if (!emailSent) {
       if (process.env.NODE_ENV !== "production") {
-        const logEntry = `\n========================================\nTIMESTAMP: ${timestamp}\nTO: ${notifyEmail}\nSUBJECT: ${emailSubject}\nName: ${name}\nEmail: ${email}\nMobile: ${mobile}\nCourse: ${course}\n========================================\n`;
+        const logEntry = `\n========================================\nTIMESTAMP: ${timestamp}\nTO: ${notifyEmail}\nSUBJECT: ${emailSubject}\nName: ${name}\nEmail: ${email}\nMobile: ${mobile}\nCity: ${city}\nCourse: ${course}\n========================================\n`;
         fs.appendFileSync(LOG_FILE_PATH, logEntry, "utf8");
       }
       transportMethod = "File Log (notifications.log)";

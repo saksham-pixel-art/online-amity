@@ -27,6 +27,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
     name: "",
     email: "",
     mobile: "",
+    city: "",
     course: "Select a course",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -39,10 +40,12 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
     const name = sanitizeInput(form.name);
     const email = sanitizeInput(form.email);
     const mobile = sanitizeInput(form.mobile);
+    const city = sanitizeInput(form.city);
 
     if (!name || name.length < 2) newErrors.name = "Please enter your full name.";
     if (!email || !isValidEmail(email)) newErrors.email = "Please enter a valid email address.";
     if (!mobile || !isValidMobile(mobile)) newErrors.mobile = "Please enter a valid mobile number.";
+    if (!city || city.length < 2) newErrors.city = "Please enter your city.";
     if (form.course === "Select a course") newErrors.course = "Please select a course.";
 
     setErrors(newErrors);
@@ -72,6 +75,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
           name: sanitizeInput(form.name),
           email: sanitizeInput(form.email).toLowerCase(),
           mobile: sanitizeInput(form.mobile),
+          city: sanitizeInput(form.city),
           course: form.course,
         }),
       });
@@ -81,7 +85,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
         setSubmitted(true);
         setTimeout(() => {
           setSubmitted(false);
-          setForm({ name: "", email: "", mobile: "", course: "Select a course" });
+          setForm({ name: "", email: "", mobile: "", city: "", course: "Select a course" });
         }, 4000);
       } else {
         setServerError(result.error || "Submission failed. Please try again.");
@@ -313,6 +317,36 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                     {errors.mobile && (
                       <p id={`${formId}-mobile-error`} role="alert" className="mt-1 text-xs text-red-600 font-medium">
                         {errors.mobile}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor={`${formId}-city`}
+                      className="block text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider"
+                    >
+                      City <span aria-hidden="true" className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id={`${formId}-city`}
+                      required
+                      aria-required="true"
+                      aria-invalid={!!errors.city}
+                      aria-describedby={errors.city ? `${formId}-city-error` : undefined}
+                      className={`w-full bg-white/60 border rounded-xl p-3 focus:ring-2 focus:ring-excellence-gold focus:border-transparent outline-none transition-all text-sm font-medium min-h-[44px] ${
+                        errors.city ? "border-red-400 bg-red-50/30" : "border-outline-variant/40"
+                      }`}
+                      placeholder="Enter your city"
+                      type="text"
+                      autoComplete="address-level2"
+                      maxLength={100}
+                      value={form.city}
+                      onChange={(e) => handleChange("city", e.target.value)}
+                    />
+                    {errors.city && (
+                      <p id={`${formId}-city-error`} role="alert" className="mt-1 text-xs text-red-600 font-medium">
+                        {errors.city}
                       </p>
                     )}
                   </div>
