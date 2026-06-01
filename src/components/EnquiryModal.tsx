@@ -12,13 +12,13 @@ type EnquiryModalProps = {
 
 const ALLOWED_COURSES = [
   "MBA (Master of Business Administration)",
-  "BBA (Bachelor of Business Administration)",
   "MCA (Master of Computer Applications)",
+  "MCOM (Master of Commerce)",
+  "MA (Master of Arts)",
+  "BBA (Bachelor of Business Administration)",
   "BCA (Bachelor of Computer Applications)",
   "BCOM (Bachelor of Commerce)",
   "BA (Bachelor of Arts)",
-  "MCOM (Master of Commerce)",
-  "MA (Master of Arts)",
 ];
 
 function sanitizeInput(value: string): string {
@@ -242,12 +242,13 @@ export default function EnquiryModal({
                   <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/5 rounded-full blur-3xl" />
 
                   <div className="relative z-10">
-                    {/* University Badge */}
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-4">
-                      <GraduationCap className="w-4 h-4 text-excellence-gold" />
-                      <span className="text-xs font-bold text-white uppercase tracking-wider">
-                        Amity University Online
-                      </span>
+                    {/* University Logo */}
+                    <div className="mb-5">
+                      <img
+                        src="/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png"
+                        alt="Amity University Online"
+                        style={{ height: "34px", width: "auto" }}
+                      />
                     </div>
 
                     <h3
@@ -258,8 +259,7 @@ export default function EnquiryModal({
                     </h3>
                     <p className="text-base text-white/90 leading-relaxed max-w-xl">
                       Connect with our academic advisors and receive
-                      personalized guidance on courses, eligibility, fees, and
-                      career opportunities.
+                      personalized guidance.
                     </p>
 
                     {/* Trust Indicators */}
@@ -610,3 +610,4 @@ export default function EnquiryModal({
     </AnimatePresence>
   );
 }
+

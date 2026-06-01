@@ -9,13 +9,13 @@ type HeroProps = {
 
 const ALLOWED_COURSES = [
   "MBA (Master of Business Administration)",
-  "BBA (Bachelor of Business Administration)",
   "MCA (Master of Computer Applications)",
+  "MCOM (Master of Commerce)",
+  "MA (Master of Arts)",
+  "BBA (Bachelor of Business Administration)",
   "BCA (Bachelor of Computer Applications)",
   "BCOM (Bachelor of Commerce)",
   "BA (Bachelor of Arts)",
-  "MCOM (Master of Commerce)",
-  "MA (Master of Arts)",
 ];
 
 function sanitizeInput(value: string): string {
