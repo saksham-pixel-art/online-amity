@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amityonline.com"),
+  metadataBase: new URL("https://amityonline.learnlith.in"),
   title: {
     default: "Online MBA, BBA, MCA, BCA Degrees | Amity University Online India",
     template: "%s | Amity University Online",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "Amity University Online",
-    url: "https://amityonline.com",
+    url: "https://amityonline.learnlith.in",
     images: [
       {
         url: "/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png",
@@ -137,14 +137,14 @@ export default function RootLayout({
               alternateName: "Amity Online",
               description:
                 "India's leading online university offering UGC-approved, WASC-accredited degree programs in MBA, BBA, MCA, and BCA with 100% online flexibility and placement support.",
-              url: "https://amityonline.com",
+              url: "https://amityonline.learnlith.in",
               logo: {
                 "@type": "ImageObject",
-                url: "https://amityonline.com/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png",
+                url: "https://amityonline.learnlith.in/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png",
                 width: 1200,
                 height: 630,
               },
-              image: "https://amityonline.com/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png",
+              image: "https://amityonline.learnlith.in/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png",
               telephone: "+91-1800-123-4567",
               email: "admissions@amityonline.com",
               address: {
@@ -278,12 +278,12 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Amity University Online",
-              url: "https://amityonline.com",
+              url: "https://amityonline.learnlith.in",
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate: "https://amityonline.com/search?q={search_term_string}",
+                  urlTemplate: "https://amityonline.learnlith.in/search?q={search_term_string}",
                 },
                 "query-input": "required name=search_term_string",
               },
@@ -301,7 +301,7 @@ export default function RootLayout({
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://amityonline.com",
+                  item: "https://amityonline.learnlith.in",
                 },
               ],
             }),

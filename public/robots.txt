@@ -12,7 +12,7 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap location
-Sitemap: https://amityonline.com/sitemap.xml
+Sitemap: https://amityonline.learnlith.in/sitemap.xml
 
 # Host preference
-Host: https://amityonline.com
+Host: https://amityonline.learnlith.in
