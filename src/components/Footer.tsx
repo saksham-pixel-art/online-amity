@@ -16,10 +16,14 @@ const quickLinks = [
 ];
 
 const programs = [
-  { href: "#programs", label: "MBA (Global)" },
-  { href: "#programs", label: "MCA Specializations" },
-  { href: "#programs", label: "BBA Full Stack" },
-  { href: "#programs", label: "BCA Cloud Tech" },
+  { href: "#programs", label: "MBA" },
+  { href: "#programs", label: "BBA" },
+  { href: "#programs", label: "MCA" },
+  { href: "#programs", label: "BCA" },
+  { href: "#programs", label: "BCOM" },
+  { href: "#programs", label: "BA" },
+  { href: "#programs", label: "MCOM" },
+  { href: "#programs", label: "MA" },
 ];
 
 export default function Footer() {

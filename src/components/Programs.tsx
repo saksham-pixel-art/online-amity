@@ -86,10 +86,14 @@ type ProgramsProps = {
 
 function getCourseValue(title: string): string {
   const t = title.toLowerCase();
-  if (t.includes("mba")) return "MBA (Global)";
-  if (t.includes("bba")) return "BBA";
-  if (t.includes("mca")) return "MCA";
-  if (t.includes("bca") || t.includes("computer applications")) return "BCA";
+  if (t.includes("mba")) return "MBA (Master of Business Administration)";
+  if (t.includes("bba")) return "BBA (Bachelor of Business Administration)";
+  if (t.includes("mca")) return "MCA (Master of Computer Applications)";
+  if (t.includes("bca") || t.includes("computer applications")) return "BCA (Bachelor of Computer Applications)";
+  if (t.includes("bcom") || t.includes("b.com")) return "BCOM (Bachelor of Commerce)";
+  if (t.includes("ba") || t.includes("bachelor of arts")) return "BA (Bachelor of Arts)";
+  if (t.includes("mcom") || t.includes("m.com")) return "MCOM (Master of Commerce)";
+  if (t.includes("ma") || t.includes("master of arts")) return "MA (Master of Arts)";
   return "Select a course";
 }
 

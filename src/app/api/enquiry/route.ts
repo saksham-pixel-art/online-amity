@@ -40,7 +40,16 @@ function isValidName(name: string): boolean {
   return nameRegex.test(name);
 }
 
-const ALLOWED_COURSES = ["MBA (Global)", "BBA", "MCA", "BCA"];
+const ALLOWED_COURSES = [
+  "MBA (Master of Business Administration)",
+  "BBA (Bachelor of Business Administration)",
+  "MCA (Master of Computer Applications)",
+  "BCA (Bachelor of Computer Applications)",
+  "BCOM (Bachelor of Commerce)",
+  "BA (Bachelor of Arts)",
+  "MCOM (Master of Commerce)",
+  "MA (Master of Arts)",
+];
 
 /** Escape a value for safe CSV inclusion */
 function escapeCSV(val: string): string {

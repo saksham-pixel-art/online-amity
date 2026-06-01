@@ -7,7 +7,16 @@ type HeroProps = {
   onOpenEnquiry?: (course?: string) => void;
 };
 
-const ALLOWED_COURSES = ["MBA (Global)", "BBA", "MCA", "BCA"];
+const ALLOWED_COURSES = [
+  "MBA (Master of Business Administration)",
+  "BBA (Bachelor of Business Administration)",
+  "MCA (Master of Computer Applications)",
+  "BCA (Bachelor of Computer Applications)",
+  "BCOM (Bachelor of Commerce)",
+  "BA (Bachelor of Arts)",
+  "MCOM (Master of Commerce)",
+  "MA (Master of Arts)",
+];
 
 function sanitizeInput(value: string): string {
   return value.replace(/<[^>]*>/g, "").replace(/[<>"'`]/g, "").trim();
