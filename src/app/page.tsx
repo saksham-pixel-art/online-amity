@@ -13,6 +13,7 @@ import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import EnquiryModal from "@/components/EnquiryModal";
+import FloatingButtons from "@/components/FloatingButtons";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,6 +56,8 @@ export default function Home() {
         onClose={handleCloseEnquiry}
         initialCourse={selectedCourse}
       />
+
+      <FloatingButtons />
     </div>
   );
 }
