@@ -1,18 +1,13 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/
 Disallow: /admin/
+Disallow: /_next/
 
-# Crawl-delay for specific bots
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-# Sitemap location
 Sitemap: https://amityonline.learnlith.in/sitemap.xml
-
-# Host preference
-Host: https://amityonline.learnlith.in

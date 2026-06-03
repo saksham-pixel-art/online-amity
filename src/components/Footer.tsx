@@ -4,11 +4,11 @@ import { MapPin, Phone, Mail, Award, Shield, Globe } from "lucide-react";
 import React from "react";
 
 const quickLinks = [
-  { href: "#disclosure", label: "UGC Disclosure" },
-  { href: "#terms", label: "Terms & Conditions" },
-  { href: "#privacy", label: "Privacy Policy" },
-  { href: "#refund", label: "Refund Policy" },
-  { href: "#contact", label: "Contact Us" },
+  { href: "/about", label: "About Us" },
+  { href: "/terms-and-conditions", label: "Terms & Conditions" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/disclaimer", label: "Disclaimer" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 const programs = [
@@ -36,10 +36,10 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 py-12">
-        
+
         {/* Main Grid - Brand + Links */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 mb-10 pb-10 border-b border-white/10">
-          
+
           {/* Brand Section - Takes 2 columns on large screens */}
           <div className="lg:col-span-2 space-y-5">
             <a href="#" aria-label="Amity University Online — Home" className="inline-block">
@@ -51,7 +51,7 @@ export default function Footer() {
                 loading="lazy"
               />
             </a>
-            
+
             <p className="text-sm text-white/70 leading-relaxed max-w-sm">
               India's No.1 Online University offering UGC-approved, WASC-accredited degree programs with 100% online flexibility and placement support.
             </p>
