@@ -94,7 +94,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
         // Redirect to thank you page with query parameters
         const firstName = sanitizeInput(form.name).split(" ")[0] || "Student";
         const courseName = encodeURIComponent(form.course);
-        window.location.href = `/thank-you?name=${encodeURIComponent(firstName)}&course=${courseName}`;
+        window.location.href = `https://amityonline.learnlith.in/thank-you?name=${encodeURIComponent(firstName)}&course=${courseName}`;
       } else {
         setServerError(result.error || "Submission failed. Please try again.");
       }
