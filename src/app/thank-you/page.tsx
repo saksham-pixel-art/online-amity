@@ -17,6 +17,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+// Force dynamic rendering - prevent static generation
+export const dynamic = 'force-dynamic';
+
 function ThankYouContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
