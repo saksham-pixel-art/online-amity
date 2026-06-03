@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { 
   CheckCircle2, 
@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [studentName, setStudentName] = useState("Student");
@@ -343,5 +343,26 @@ export default function ThankYouPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+// Loading fallback component
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-academic-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600 font-medium">Loading...</p>
+      </div>
+    </div>
+  );
+}
+
+// Main export wrapped in Suspense
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <ThankYouContent />
+    </Suspense>
   );
 }
