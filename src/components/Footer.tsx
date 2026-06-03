@@ -1,14 +1,24 @@
 "use client";
 
 import { MapPin, Phone, Mail, Award, Shield, Globe } from "lucide-react";
-import React from "react";
+import { useState } from "react";
+import ContentModal from "./ContentModal";
+import {
+  AboutContent,
+  ContactContent,
+  PrivacyPolicyContent,
+  TermsContent,
+  DisclaimerContent,
+} from "./ModalContents";
+
+type ModalType = "about" | "terms" | "privacy" | "disclaimer" | "contact" | null;
 
 const quickLinks = [
-  { href: "/about", label: "About Us" },
-  { href: "/terms-and-conditions", label: "Terms & Conditions" },
-  { href: "/privacy-policy", label: "Privacy Policy" },
-  { href: "/disclaimer", label: "Disclaimer" },
-  { href: "/contact", label: "Contact Us" },
+  { id: "about" as ModalType, label: "About Us" },
+  { id: "terms" as ModalType, label: "Terms & Conditions" },
+  { id: "privacy" as ModalType, label: "Privacy Policy" },
+  { id: "disclaimer" as ModalType, label: "Disclaimer" },
+  { id: "contact" as ModalType, label: "Contact Us" },
 ];
 
 const programs = [
@@ -26,13 +36,35 @@ const accreditations = [
 ];
 
 export default function Footer() {
+  const [openModal, setOpenModal] = useState<ModalType>(null);
+
+  const getModalContent = (type: ModalType) => {
+    switch (type) {
+      case "about":
+        return { title: "About Us", content: <AboutContent /> };
+      case "contact":
+        return { title: "Contact Us", content: <ContactContent /> };
+      case "privacy":
+        return { title: "Privacy Policy", content: <PrivacyPolicyContent /> };
+      case "terms":
+        return { title: "Terms & Conditions", content: <TermsContent /> };
+      case "disclaimer":
+        return { title: "Disclaimer", content: <DisclaimerContent /> };
+      default:
+        return null;
+    }
+  };
+
+  const modalData = openModal ? getModalContent(openModal) : null;
+
   return (
-    <footer className="relative bg-gradient-to-br from-trust-navy via-[#001a3d] to-trust-navy overflow-hidden" role="contentinfo">
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-excellence-gold rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
-      </div>
+    <>
+      <footer className="relative bg-gradient-to-br from-trust-navy via-[#001a3d] to-trust-navy overflow-hidden" role="contentinfo">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-excellence-gold rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
+        </div>
 
       {/* Main Footer Content */}
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 py-12">
@@ -81,13 +113,13 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-white/60 hover:text-excellence-gold transition-colors inline-flex items-center gap-2 group"
+                  <button
+                    onClick={() => setOpenModal(link.id)}
+                    className="text-sm text-white/60 hover:text-excellence-gold transition-colors inline-flex items-center gap-2 group cursor-pointer"
                   >
                     <span className="w-0 group-hover:w-1.5 h-px bg-excellence-gold transition-all" />
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -162,6 +194,18 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+      </footer>
+
+      {/* Modal */}
+      {modalData && (
+        <ContentModal
+          isOpen={!!openModal}
+          onClose={() => setOpenModal(null)}
+          title={modalData.title}
+        >
+          {modalData.content}
+        </ContentModal>
+      )}
+    </>
   );
 }
