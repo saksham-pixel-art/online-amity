@@ -77,7 +77,8 @@ function ThankYouContent() {
             <img 
               src="/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png" 
               alt="Amity University Online" 
-              className="h-10 sm:h-12 object-contain"
+              style={{ height: '32px' }}
+              className="object-contain"
             />
           </Link>
           <Link
