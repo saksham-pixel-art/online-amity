@@ -399,11 +399,9 @@ export default function RootLayout({
         {/* <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" /> */}
 
         {/* Google Analytics 4 */}
-        {/* Uncomment after getting your GA4 Measurement ID from Google Analytics setup */}
-        {/* Replace GA_MEASUREMENT_ID with your actual ID (format: G-XXXXXXXXXX) */}
-        {/* <script
+        <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+          src="https://www.googletagmanager.com/gtag/js?id=G-0874L45298"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -411,13 +409,13 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'GA_MEASUREMENT_ID', {
+              gtag('config', 'G-0874L45298', {
                 page_path: window.location.pathname,
                 send_page_view: true
               });
             `,
           }}
-        /> */}
+        />
 
         {/* ── Structured Data: Organization + EducationalOrganization ── */}
         <script
