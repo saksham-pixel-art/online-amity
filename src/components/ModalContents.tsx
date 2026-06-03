@@ -147,12 +147,9 @@ export function ContactContent() {
           <div className="bg-white border border-gray-200 rounded-2xl p-6 border-t-4 border-t-excellence-gold text-center">
             <div className="text-4xl mb-3" aria-hidden="true">✉️</div>
             <h3 className="text-base font-bold text-trust-navy mb-2">Email Us</h3>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="text-blue-600 font-semibold text-sm hover:underline break-all"
-            >
+            <div className="text-blue-600 font-semibold text-sm break-all">
               {CONTACT_EMAIL}
-            </a>
+            </div>
             <p className="text-xs text-gray-500 mt-2">Response within 24 hours</p>
           </div>
 
@@ -277,9 +274,9 @@ export function PrivacyPolicyContent() {
         </ul>
         <p className={pStyle}>
           Contact us at{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 font-semibold">
+          <span className="text-blue-600 font-semibold">
             {CONTACT_EMAIL}
-          </a>
+          </span>
           {" "}to exercise these rights.
         </p>
       </section>
@@ -289,9 +286,9 @@ export function PrivacyPolicyContent() {
         <h2 className="text-lg font-bold text-trust-navy mb-3">Contact Us</h2>
         <p className={pStyle}>
           <strong>Email:</strong>{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 font-semibold">
+          <span className="text-blue-600 font-semibold">
             {CONTACT_EMAIL}
-          </a>
+          </span>
         </p>
         <p className={pStyle}>
           <strong>Phone:</strong>{" "}
@@ -361,9 +358,9 @@ export function TermsContent() {
         <p className={pStyle}>
           Refunds are governed by the university's official policy provided at enrollment.
           Contact{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 font-semibold">
+          <span className="text-blue-600 font-semibold">
             {CONTACT_EMAIL}
-          </a>
+          </span>
           {" "}for details.
         </p>
       </section>
@@ -400,9 +397,9 @@ export function TermsContent() {
         <h2 className="text-lg font-bold text-trust-navy mb-3">Questions?</h2>
         <p className={pStyle}>
           <strong>Email:</strong>{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 font-semibold">
+          <span className="text-blue-600 font-semibold">
             {CONTACT_EMAIL}
-          </a>
+          </span>
         </p>
         <p className={pStyle}>
           <strong>Phone:</strong>{" "}
@@ -500,9 +497,9 @@ export function DisclaimerContent() {
         <h2 className="text-lg font-bold text-trust-navy mb-3">Contact Us</h2>
         <p className={pStyle}>
           <strong>Email:</strong>{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 font-semibold">
+          <span className="text-blue-600 font-semibold">
             {CONTACT_EMAIL}
-          </a>
+          </span>
         </p>
         <p className={pStyle}>
           <strong>Phone:</strong>{" "}

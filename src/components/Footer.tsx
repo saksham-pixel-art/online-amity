@@ -160,10 +160,10 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-excellence-gold flex-shrink-0" />
                 <span>+91 7037010407</span>
               </a>
-              <a href="mailto:admissions@onlineamity.com" className="flex items-center gap-2.5 text-white/60 hover:text-excellence-gold transition-colors group text-sm">
+              <div className="flex items-center gap-2.5 text-white/60 text-sm">
                 <Mail className="w-4 h-4 text-excellence-gold flex-shrink-0" />
                 <span>admissions@onlineamity.com</span>
-              </a>
+              </div>
               <div className="flex items-start gap-2.5 text-white/60 text-sm pt-1">
                 <MapPin className="w-4 h-4 text-excellence-gold flex-shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
