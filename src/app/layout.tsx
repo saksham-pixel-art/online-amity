@@ -394,9 +394,8 @@ export default function RootLayout({
         <meta name="geo.position" content="28.5355;77.3910" />
         <meta name="ICBM" content="28.5355, 77.3910" />
 
-        {/* Google / Bing verification — add your codes below */}
-        {/* Uncomment and add your verification codes after setting up GSC and Bing */}
-        {/* <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" /> */}
+        {/* Google / Bing verification */}
+        <meta name="google-site-verification" content="mYn5o6Lgmu55eq879llvZ_m8vQ57O-Rz8BLqyQMDU9Y" />
         {/* <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" /> */}
 
         {/* Google Analytics 4 */}
