@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { 
   CheckCircle2, 
   Phone, 
@@ -22,7 +22,6 @@ export const dynamic = 'force-dynamic';
 
 function ThankYouContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [studentName, setStudentName] = useState("Student");
   const [selectedCourse, setSelectedCourse] = useState("");
 
@@ -30,12 +29,21 @@ function ThankYouContent() {
     // Set page title
     document.title = "Thank You | Amity University Online";
     
-    const name = searchParams.get("name");
-    const course = searchParams.get("course");
+    // Read from session storage instead of URL parameters
+    const name = sessionStorage.getItem('thankYouName');
+    const course = sessionStorage.getItem('thankYouCourse');
     
-    if (name) setStudentName(name);
-    if (course) setSelectedCourse(course);
-  }, [searchParams]);
+    if (name) {
+      setStudentName(name);
+      // Clear from session storage after reading
+      sessionStorage.removeItem('thankYouName');
+    }
+    if (course) {
+      setSelectedCourse(course);
+      // Clear from session storage after reading
+      sessionStorage.removeItem('thankYouCourse');
+    }
+  }, []);
 
   const exploreOptions = [
     {

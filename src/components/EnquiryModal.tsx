@@ -144,10 +144,13 @@ export default function EnquiryModal({
 
       const result = await response.json();
       if (result.success) {
-        // Redirect to thank you page with query parameters
+        // Store data in session storage
         const firstName = sanitizeInput(form.name).split(" ")[0] || "Student";
-        const courseName = encodeURIComponent(form.course);
-        window.location.href = `https://amityonline.learnlith.in/thank-you?name=${encodeURIComponent(firstName)}&course=${courseName}`;
+        sessionStorage.setItem('thankYouName', firstName);
+        sessionStorage.setItem('thankYouCourse', form.course);
+        
+        // Redirect to clean URL without parameters
+        window.location.href = 'https://amityonline.learnlith.in/thank-you';
       } else {
         setServerError(result.error || "Submission failed. Please try again.");
       }
