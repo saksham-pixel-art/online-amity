@@ -26,8 +26,19 @@ function isValidEmail(email: string): boolean {
   return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
 }
 
-function isValidMobile(mobile: string): boolean {
-  return /^[+]?[\d\s\-().]{7,20}$/.test(mobile);
+function isValidIndianMobile(mobile: string): boolean {
+  // Remove all spaces, dashes, parentheses, and +91 prefix
+  const cleaned = mobile.replace(/[\s\-().+]/g, "");
+  
+  // Check if it's exactly 10 digits starting with 6-9 (Indian mobile format)
+  // OR 12 digits starting with 91 (with country code)
+  if (/^[6-9]\d{9}$/.test(cleaned)) {
+    return true; // 10 digit Indian number
+  }
+  if (/^91[6-9]\d{9}$/.test(cleaned)) {
+    return true; // 12 digit with 91 prefix
+  }
+  return false;
 }
 
 export default function Hero({ onOpenEnquiry }: HeroProps) {
@@ -53,7 +64,7 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
 
     if (!name || name.length < 2) newErrors.name = "Please enter your full name.";
     if (!email || !isValidEmail(email)) newErrors.email = "Please enter a valid email address.";
-    if (!mobile || !isValidMobile(mobile)) newErrors.mobile = "Please enter a valid mobile number.";
+    if (!mobile || !isValidIndianMobile(mobile)) newErrors.mobile = "Please enter a valid 10-digit Indian mobile number.";
     if (!city || city.length < 2) newErrors.city = "Please enter your city.";
     if (form.course === "Select a course") newErrors.course = "Please select a course.";
 
@@ -318,13 +329,20 @@ export default function Hero({ onOpenEnquiry }: HeroProps) {
                       className={`w-full bg-white/60 border rounded-xl p-3 focus:ring-2 focus:ring-excellence-gold focus:border-transparent outline-none transition-all text-sm font-medium min-h-[44px] ${
                         errors.mobile ? "border-red-400 bg-red-50/30" : "border-outline-variant/40"
                       }`}
-                      placeholder="Enter mobile number"
+                      placeholder="98765 43210"
                       type="tel"
                       autoComplete="tel"
-                      maxLength={20}
+                      inputMode="numeric"
+                      pattern="[6-9][0-9]{9}"
+                      maxLength={15}
                       value={form.mobile}
                       onChange={(e) => handleChange("mobile", e.target.value)}
                     />
+                    {!errors.mobile && (
+                      <p className="mt-1 text-xs text-on-surface-variant/70">
+                        Indian mobile numbers only (10 digits)
+                      </p>
+                    )}
                     {errors.mobile && (
                       <p id={`${formId}-mobile-error`} role="alert" className="mt-1 text-xs text-red-600 font-medium">
                         {errors.mobile}
