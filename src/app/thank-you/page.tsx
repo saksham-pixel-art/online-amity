@@ -257,10 +257,10 @@ function ThankYouContent() {
               <Mail className="w-8 h-8 mb-3 text-excellence-gold" />
               <h3 className="font-bold mb-2 text-lg">Email Us</h3>
               <a
-                href="mailto:admissions@amityonline.com"
+                href="mailto:admissions@onlineamity.com"
                 className="text-blue-100 hover:text-white font-medium transition-colors break-all"
               >
-                admissions@amityonline.com
+                admissions@onlineamity.com
               </a>
               <p className="text-xs text-blue-200 mt-2">24-hour response time</p>
             </motion.div>

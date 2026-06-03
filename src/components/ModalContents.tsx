@@ -2,7 +2,7 @@
 
 // Reusable content for different modals
 const LAST_UPDATED = "June 3, 2026";
-const CONTACT_EMAIL = "admissions@amityonline.com";
+const CONTACT_EMAIL = "admissions@onlineamity.com";
 
 const sectionStyle = "mb-6";
 const h2Style = "text-xl md:text-2xl font-bold text-trust-navy mb-3 border-l-4 border-excellence-gold pl-4";

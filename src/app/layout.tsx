@@ -110,7 +110,7 @@ const organizationSchema = {
   },
   image: `${BASE_URL}/assets/6084f44d00fa7aa6f0e1cee97e8abc05.png`,
   telephone: "+91-7037010407",
-  email: "admissions@amityonline.com",
+  email: "admissions@onlineamity.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Sector 125",

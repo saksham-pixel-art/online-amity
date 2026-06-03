@@ -153,7 +153,7 @@ export default function ThankYouPage({
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-excellence-gold" />
-              <span className="text-sm">admissions@amityonline.com</span>
+              <span className="text-sm">admissions@onlineamity.com</span>
             </div>
           </motion.div>
         </div>
