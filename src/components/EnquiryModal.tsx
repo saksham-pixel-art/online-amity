@@ -144,18 +144,10 @@ export default function EnquiryModal({
 
       const result = await response.json();
       if (result.success) {
-        setSuccess(true);
-        setTimeout(() => {
-          setSuccess(false);
-          setForm({
-            name: "",
-            email: "",
-            mobile: "",
-            city: "",
-            course: "Select a course",
-          });
-          onClose();
-        }, 3500);
+        // Redirect to thank you page with query parameters
+        const firstName = sanitizeInput(form.name).split(" ")[0] || "Student";
+        const courseName = encodeURIComponent(form.course);
+        window.location.href = `/thank-you?name=${encodeURIComponent(firstName)}&course=${courseName}`;
       } else {
         setServerError(result.error || "Submission failed. Please try again.");
       }
